@@ -38,10 +38,8 @@ taskController.updateTask = async (req, res) => {
   }
 };
 taskController.deleteTask = async (req, res) => {
-  console.log(1);
   try {
     const deleteItem = await Task.findByIdAndDelete(req.params.id);
-    console.log(deleteItem);
     res.status(200).json({ status: "success", data: deleteItem });
   } catch (error) {
     res.status(400).json({ status: "fail", error });
