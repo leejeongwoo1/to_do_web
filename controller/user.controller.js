@@ -7,7 +7,7 @@ userController.createUser = async (req, res) => {
   try {
     const { email, name, password } = req.body;
     const user = await User.findOne({ email: email });
-
+    console.log(email, name, password);
     if (user) {
       throw new Error("이미 가입이 된 유저 입니다");
     }
@@ -35,7 +35,7 @@ userController.loginWithEmail = async (req, res) => {
     }
     throw new Error("아이디 또는 비밀번호가 일치하지 않습니다");
   } catch (error) {
-    res.status(400).json({ status: "fail", error });
+    res.status(400).json({ status: "fail", message: error.message });
   }
 };
 
